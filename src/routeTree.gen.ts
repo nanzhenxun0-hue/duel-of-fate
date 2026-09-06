@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BattleRouteImport } from './routes/battle'
 import { Route as CollectionRouteImport } from './routes/collection'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as StarterRouteImport } from './routes/starter'
@@ -18,6 +19,11 @@ import { Route as TutorialRouteImport } from './routes/tutorial'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BattleRoute = BattleRouteImport.update({
+  id: '/battle',
+  path: '/battle',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CollectionRoute = CollectionRouteImport.update({
@@ -43,6 +49,7 @@ const TutorialRoute = TutorialRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/battle': typeof BattleRoute
   '/collection': typeof CollectionRoute
   '/shop': typeof ShopRoute
   '/starter': typeof StarterRoute
@@ -50,6 +57,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/battle': typeof BattleRoute
   '/collection': typeof CollectionRoute
   '/shop': typeof ShopRoute
   '/starter': typeof StarterRoute
@@ -58,6 +66,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/battle': typeof BattleRoute
   '/collection': typeof CollectionRoute
   '/shop': typeof ShopRoute
   '/starter': typeof StarterRoute
@@ -65,14 +74,23 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/collection' | '/shop' | '/starter' | '/tutorial'
+  fullPaths:
+    '/' | '/battle' | '/collection' | '/shop' | '/starter' | '/tutorial'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/collection' | '/shop' | '/starter' | '/tutorial'
-  id: '__root__' | '/' | '/collection' | '/shop' | '/starter' | '/tutorial'
+  to: '/' | '/battle' | '/collection' | '/shop' | '/starter' | '/tutorial'
+  id:
+    | '__root__'
+    | '/'
+    | '/battle'
+    | '/collection'
+    | '/shop'
+    | '/starter'
+    | '/tutorial'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BattleRoute: typeof BattleRoute
   CollectionRoute: typeof CollectionRoute
   ShopRoute: typeof ShopRoute
   StarterRoute: typeof StarterRoute
@@ -86,6 +104,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/battle': {
+      id: '/battle'
+      path: '/battle'
+      fullPath: '/battle'
+      preLoaderRoute: typeof BattleRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/collection': {
@@ -121,6 +146,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BattleRoute: BattleRoute,
   CollectionRoute: CollectionRoute,
   ShopRoute: ShopRoute,
   StarterRoute: StarterRoute,
