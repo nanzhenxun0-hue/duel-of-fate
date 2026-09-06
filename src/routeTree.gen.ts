@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CollectionRouteImport } from './routes/collection'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as StarterRouteImport } from './routes/starter'
 import { Route as TutorialRouteImport } from './routes/tutorial'
@@ -17,6 +18,11 @@ import { Route as TutorialRouteImport } from './routes/tutorial'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CollectionRoute = CollectionRouteImport.update({
+  id: '/collection',
+  path: '/collection',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ShopRoute = ShopRouteImport.update({
@@ -37,12 +43,14 @@ const TutorialRoute = TutorialRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/collection': typeof CollectionRoute
   '/shop': typeof ShopRoute
   '/starter': typeof StarterRoute
   '/tutorial': typeof TutorialRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/collection': typeof CollectionRoute
   '/shop': typeof ShopRoute
   '/starter': typeof StarterRoute
   '/tutorial': typeof TutorialRoute
@@ -50,20 +58,22 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/collection': typeof CollectionRoute
   '/shop': typeof ShopRoute
   '/starter': typeof StarterRoute
   '/tutorial': typeof TutorialRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/shop' | '/starter' | '/tutorial'
+  fullPaths: '/' | '/collection' | '/shop' | '/starter' | '/tutorial'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/shop' | '/starter' | '/tutorial'
-  id: '__root__' | '/' | '/shop' | '/starter' | '/tutorial'
+  to: '/' | '/collection' | '/shop' | '/starter' | '/tutorial'
+  id: '__root__' | '/' | '/collection' | '/shop' | '/starter' | '/tutorial'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CollectionRoute: typeof CollectionRoute
   ShopRoute: typeof ShopRoute
   StarterRoute: typeof StarterRoute
   TutorialRoute: typeof TutorialRoute
@@ -76,6 +86,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/collection': {
+      id: '/collection'
+      path: '/collection'
+      fullPath: '/collection'
+      preLoaderRoute: typeof CollectionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/shop': {
@@ -104,6 +121,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CollectionRoute: CollectionRoute,
   ShopRoute: ShopRoute,
   StarterRoute: StarterRoute,
   TutorialRoute: TutorialRoute,
