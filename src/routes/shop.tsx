@@ -39,7 +39,7 @@ function Shop() {
           <Link to="/" className="text-xs text-muted-foreground hover:text-foreground">
             ← ホーム
           </Link>
-          <span className="rounded-full border border-amber-300/40 px-3 py-1 text-sm text-amber-200">
+          <span className="rounded-full border border-lumen/40 px-3 py-1 text-sm text-lumen">
             所持鏡片 {p.coins}
           </span>
         </div>
@@ -70,7 +70,7 @@ function Shop() {
         </div>
 
         {pulled && (
-          <section className="mt-10 rounded-xl border border-amber-300/40 bg-card/60 p-6">
+          <section className="mt-10 rounded-xl border border-lumen/40 bg-card/60 p-6">
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold text-card-foreground">開封結果</h2>
               <button

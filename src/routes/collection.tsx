@@ -114,7 +114,7 @@ function Collection() {
           </Link>
           <Link
             to="/battle"
-            className="rounded-md bg-amber-300 px-4 py-2 text-sm font-bold text-black"
+            className="rounded-md bg-primary px-4 py-2 text-sm font-bold text-primary-foreground"
           >
             この構成でバトル
           </Link>

@@ -67,7 +67,7 @@ function Home() {
     <main className="min-h-screen bg-background px-6 py-14">
       <div className="mx-auto max-w-4xl">
         <p className="text-xs tracking-[0.4em] text-muted-foreground">MIRRORREALM DUEL</p>
-        <h1 className="mt-3 bg-gradient-to-r from-amber-200 via-foreground to-violet-300 bg-clip-text text-5xl font-black text-transparent">
+        <h1 className="mt-3 bg-gradient-to-r from-lumen via-foreground to-umbra bg-clip-text text-5xl font-black text-transparent">
           鏡界双戦
         </h1>
         <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
@@ -81,7 +81,7 @@ function Home() {
               key={it.to}
               to={it.to}
               className={
-                "group rounded-xl border border-border bg-card/60 p-5 transition hover:border-amber-300/50 hover:bg-card " +
+                "group rounded-xl border border-border bg-card/60 p-5 transition hover:border-lumen/50 hover:bg-card " +
                 (it.ready ? "" : "opacity-50")
               }
             >

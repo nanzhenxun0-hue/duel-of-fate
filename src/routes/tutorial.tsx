@@ -51,7 +51,7 @@ function Tutorial() {
   const [step, setStep] = useState(0);
   const p = useProfile();
   const navigate = useNavigate();
-  const s = STEPS[step];
+  const s = STEPS[step]!;
   const last = step === STEPS.length - 1;
 
   return (
@@ -67,7 +67,7 @@ function Tutorial() {
             <div
               key={i}
               className={
-                "h-1 flex-1 rounded " + (i <= step ? "bg-amber-300" : "bg-muted")
+                "h-1 flex-1 rounded " + (i <= step ? "bg-primary" : "bg-muted")
               }
             />
           ))}
@@ -99,7 +99,7 @@ function Tutorial() {
                 completeTutorial();
                 navigate({ to: "/starter" });
               }}
-              className="rounded-md bg-amber-300 px-5 py-2 text-sm font-bold text-black hover:bg-amber-200"
+              className="rounded-md bg-primary px-5 py-2 text-sm font-bold text-primary-foreground hover:bg-primary/90"
             >
               {p.tutorialDone ? "スターター選択へ" : "修了してスターターを選ぶ（+100鏡片）"}
             </button>

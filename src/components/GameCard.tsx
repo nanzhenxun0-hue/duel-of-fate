@@ -4,13 +4,13 @@ import { RARITY_LABEL, RARITY_STYLE, type CardDef } from "@/data/cards";
 interface Props {
   card: CardDef;
   size?: "sm" | "md";
-  selected?: boolean;
-  dimmed?: boolean;
-  count?: number;
-  foil?: boolean;
-  serial?: string;
-  onClick?: () => void;
-  className?: string;
+  selected?: boolean | undefined;
+  dimmed?: boolean | undefined;
+  count?: number | undefined;
+  foil?: boolean | undefined;
+  serial?: string | undefined;
+  onClick?: (() => void) | undefined;
+  className?: string | undefined;
 }
 
 export function GameCard({
@@ -33,12 +33,12 @@ export function GameCard({
       className={cn(
         "relative flex flex-col rounded-lg border bg-card/80 p-2 text-left backdrop-blur transition",
         "shadow-[0_0_0_1px_rgba(255,255,255,0.03)]",
-        size === "sm" ? "w-28 min-h-36" : "w-40 min-h-52",
+        size === "sm" ? "w-32 min-h-40 gap-0.5" : "w-40 min-h-52",
         RARITY_STYLE[card.rarity],
         onClick && "hover:-translate-y-1 hover:shadow-lg cursor-pointer",
-        selected && "ring-2 ring-amber-300 -translate-y-1",
+        selected && "ring-2 ring-lumen -translate-y-1",
         dimmed && "opacity-40 grayscale",
-        foil && "bg-gradient-to-br from-fuchsia-500/20 via-sky-400/10 to-amber-300/20",
+        foil && "bg-gradient-to-br from-fuchsia-500/20 via-sky-400/10 to-lumen/20",
         className,
       )}
     >
@@ -54,12 +54,12 @@ export function GameCard({
         <span className="shrink-0 rounded border px-1 text-[10px] font-bold">{card.rarity}</span>
       </div>
 
-      <div className="mt-1 flex gap-1 text-[10px]">
+      <div className="mt-1 flex flex-wrap gap-1 text-[9px]">
         {card.costLight > 0 && (
-          <span className="rounded bg-amber-300/20 px-1 text-amber-200">光{card.costLight}</span>
+          <span className="rounded bg-lumen/15 px-1 text-lumen">光{card.costLight}</span>
         )}
         {card.costShadow > 0 && (
-          <span className="rounded bg-violet-400/20 px-1 text-violet-200">影{card.costShadow}</span>
+          <span className="rounded bg-umbra/20 px-1 text-umbra">影{card.costShadow}</span>
         )}
         {card.costLight === 0 && card.costShadow === 0 && (
           <span className="rounded bg-muted px-1 text-muted-foreground">コスト0</span>
@@ -79,7 +79,7 @@ export function GameCard({
       </p>
 
       <div className="mt-1 flex items-end justify-between">
-        <span className="text-[9px] text-muted-foreground">
+        <span className="truncate text-[9px] text-muted-foreground">
           {card.series}・{RARITY_LABEL[card.rarity]}
         </span>
         {isUnit && (
@@ -91,7 +91,7 @@ export function GameCard({
 
       {serial && <span className="mt-0.5 text-[9px] text-muted-foreground">No.{serial}</span>}
       {foil && (
-        <span className="absolute -top-2 -right-2 rounded-full bg-fuchsia-400 px-1.5 py-0.5 text-[9px] font-bold text-black">
+        <span className="absolute -top-2 -right-2 rounded-full bg-fuchsia-400 px-1.5 py-0.5 text-[9px] font-bold text-primary-foreground">
           箔押し
         </span>
       )}
