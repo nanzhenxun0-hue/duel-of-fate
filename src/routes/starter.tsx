@@ -32,7 +32,7 @@ function StarterPage() {
           </p>
           <Link
             to="/tutorial"
-            className="mt-6 inline-block rounded-md bg-amber-300 px-5 py-2 text-sm font-bold text-black"
+            className="mt-6 inline-block rounded-md bg-primary px-5 py-2 text-sm font-bold text-primary-foreground"
           >
             チュートリアルへ
           </Link>
@@ -63,7 +63,7 @@ function StarterPage() {
                 key={d.id}
                 className={
                   "rounded-xl border p-5 " +
-                  (chosen ? "border-amber-300/60 bg-card" : "border-border bg-card/60")
+                  (chosen ? "border-lumen/60 bg-card" : "border-border bg-card/60")
                 }
               >
                 <h2 className="text-lg font-bold text-card-foreground">{d.name}</h2>
@@ -85,7 +85,7 @@ function StarterPage() {
                     chooseStarter(d.id);
                     navigate({ to: "/battle" });
                   }}
-                  className="mt-5 w-full rounded-md bg-amber-300 px-4 py-2 text-sm font-bold text-black disabled:opacity-40"
+                  className="mt-5 w-full rounded-md bg-primary px-4 py-2 text-sm font-bold text-primary-foreground disabled:opacity-40"
                 >
                   {chosen ? "選択済み" : "このデッキで始める"}
                 </button>

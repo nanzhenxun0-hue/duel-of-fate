@@ -162,7 +162,7 @@ export function openPack(packId: string): PulledCard[] {
       rarity = "C";
       candidates = pool.filter((c) => c.rarity === "C");
     }
-    const card = candidates[Math.floor(Math.random() * candidates.length)];
+    const card = candidates[Math.floor(Math.random() * candidates.length)]!;
     results.push({
       card,
       foil: Math.random() < 0.08,

@@ -41,7 +41,7 @@ function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
+    [a[i], a[j]] = [a[j]!, a[i]!];
   }
   return a;
 }
@@ -356,7 +356,7 @@ export function aiTurn(state: GameState): GameState {
           b.def.costLight + b.def.costShadow - (a.def.costLight + a.def.costShadow),
       );
     if (!candidates.length) break;
-    const pick = candidates[0];
+    const pick = candidates[0]!;
     let target: { side: SideKey; zone: number } | undefined;
     if (pick.def.effect.target === "enemyUnit") {
       const zone = s.you.field.findIndex(Boolean);

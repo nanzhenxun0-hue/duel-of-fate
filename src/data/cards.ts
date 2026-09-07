@@ -426,7 +426,7 @@ export const CARD_MAP: Record<string, CardDef> = Object.fromEntries(
 );
 
 export function getCard(id: string): CardDef {
-  return CARD_MAP[id];
+  return CARD_MAP[id] as CardDef;
 }
 
 export interface PackDef {

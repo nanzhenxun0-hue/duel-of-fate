@@ -47,7 +47,7 @@ function Battle() {
     recorded.current = false;
     setSelHand(null);
     setSelAttacker(null);
-    const foe = STARTER_DECKS[Math.floor(Math.random() * STARTER_DECKS.length)].cards;
+    const foe = STARTER_DECKS[Math.floor(Math.random() * STARTER_DECKS.length)]!.cards;
     setGame(createGame([...p.deck], [...foe]));
   };
 
@@ -80,7 +80,7 @@ function Battle() {
           <div className="mt-6 flex justify-center gap-3">
             <Link
               to="/starter"
-              className="rounded-md bg-amber-300 px-5 py-2 text-sm font-bold text-black"
+              className="rounded-md bg-primary px-5 py-2 text-sm font-bold text-primary-foreground"
             >
               スターターを選ぶ
             </Link>
@@ -179,10 +179,10 @@ function Battle() {
         <CoreBar side="you" state={game} />
 
         <div className="mt-4 flex flex-wrap items-center gap-3">
-          <span className="rounded bg-amber-300/20 px-2 py-1 text-xs text-amber-200">
+          <span className="rounded bg-lumen/15 px-2 py-1 text-xs text-lumen">
             光 {game.you.light}
           </span>
-          <span className="rounded bg-violet-400/20 px-2 py-1 text-xs text-violet-200">
+          <span className="rounded bg-umbra/20 px-2 py-1 text-xs text-umbra">
             影 {game.you.shadow}
           </span>
           <span className="text-xs text-muted-foreground">
@@ -195,14 +195,14 @@ function Battle() {
               setGame(endTurn(game, "you"));
             }}
             disabled={!yourTurn}
-            className="ml-auto rounded-md bg-amber-300 px-4 py-2 text-sm font-bold text-black disabled:opacity-40"
+            className="ml-auto rounded-md bg-primary px-4 py-2 text-sm font-bold text-primary-foreground disabled:opacity-40"
           >
             {yourTurn ? "ターン終了" : "相手のターン…"}
           </button>
         </div>
 
         {selDef && (
-          <p className="mt-2 text-xs text-amber-200">
+          <p className="mt-2 text-xs text-lumen">
             {selDef.type === "unit"
               ? "空いている自分のゾーンをクリックして召喚"
               : targetMode === "enemyUnit"
@@ -265,7 +265,7 @@ function Battle() {
               <div className="mt-6 flex justify-center gap-3">
                 <button
                   onClick={start}
-                  className="rounded-md bg-amber-300 px-4 py-2 text-sm font-bold text-black"
+                  className="rounded-md bg-primary px-4 py-2 text-sm font-bold text-primary-foreground"
                 >
                   もう一戦
                 </button>
@@ -341,8 +341,8 @@ function FieldRow({
             onClick={() => onZone(zone)}
             className={cn(
               "flex min-h-32 items-center justify-center rounded-lg border border-dashed border-border bg-card/30 p-2",
-              highlight && "border-amber-300/60",
-              selectedZone === zone && "ring-2 ring-amber-300",
+              highlight && "border-lumen/60",
+              selectedZone === zone && "ring-2 ring-lumen",
             )}
           >
             {u ? (
